@@ -1,6 +1,7 @@
 /*
 WAP to convert a given Infix expression into its equivalent
  Postfix  expression and evaluate it using stack.
+ Infix :(3+4)*5-2,postFix : 34+5*2-,result : 33
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -210,6 +211,7 @@ int main()
 /*
 WAP to convert a given Infix expression into its equivalent
 Prefix  expression and evaluate it using stack. make menu driven code in c
+infix :(3+4)*5-2 , Prefix:-*+3452  ,Result :33
 */
 
 #include <stdio.h>
