@@ -75,13 +75,29 @@ struct Employee *search(struct TreeNode *root, int empId)
 int main()
 {
     struct TreeNode *root = NULL;
-    struct Employee empData[] = {
-        {101, "John Doe", "Engineering"},
-        {103, "Alice Smith", "Human Resources"},
-        {105, "Bob Johnson", "Marketing"},
-        {102, "Jane Brown", "Finance"},
-        {104, "Mary Lee", "Sales"}};
-    int numEmployees = sizeof(empData) / sizeof(empData[0]);
+    int numEmployees;
+
+    // Get the number of employees from the user
+    printf("Enter the number of employees: ");
+    scanf("%d", &numEmployees);
+
+    // Allocate memory for employee data
+    struct Employee *empData = (struct Employee *)malloc(numEmployees * sizeof(struct Employee));
+
+    // Get employee details from the user
+    for (int i = 0; i < numEmployees; i++)
+    {
+        printf("Enter details for employee %d:\n", i + 1);
+        printf("Employee ID: ");
+        scanf("%d", &empData[i].empId);
+        getchar(); // Consume newline character left by scanf
+        printf("Name: ");
+        fgets(empData[i].name, sizeof(empData[i].name), stdin);
+        empData[i].name[strcspn(empData[i].name, "\n")] = 0; // Remove newline character
+        printf("Department: ");
+        fgets(empData[i].department, sizeof(empData[i].department), stdin);
+        empData[i].department[strcspn(empData[i].department, "\n")] = 0; // Remove newline character
+    }
 
     // Inserting employee records into the binary search tree
     for (int i = 0; i < numEmployees; i++)
@@ -109,6 +125,9 @@ int main()
     {
         printf("Employee Record with ID %d not found.\n", searchId);
     }
+
+    // Free allocated memory
+    free(empData);
 
     return 0;
 }
